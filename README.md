@@ -45,3 +45,9 @@ velocity of p1: [ 0.97997504 -0.40049911  0.        ]
 <p align="center">
     <img src="imgs/demo3.gif", height=480>
 </p>
+
+### Demo 4
+
+<p align="center">
+    <img src="imgs/implicit.gif", height=240> <img src="imgs/symplectic.gif", height=240>
+</p>
