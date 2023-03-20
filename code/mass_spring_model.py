@@ -60,15 +60,15 @@ class Mass_spring:
             base_len = self.l_i[i]
             delta = a - b
             l_tau = delta.norm()
-            self.U[None] += (l_tau - base_len)**2 * self.Kl * self.dt**2
+            self.U[None] += 0.5 * (l_tau - base_len)**2 * self.Kl * self.dt**2
 
     @ti.func
     def compute_dl(self, l_tau, l_base):
-        return -self.Kl * 2.0 * (l_base - l_tau)
+        return -self.Kl * (l_base - l_tau)
 
     @ti.func
     def compute_dl2(self, l_base):
-        return self.Kl * 2.0
+        return self.Kl
 
     @ti.func
     def compute_l_dx2(self, p1, p2, l_tau, dim):
