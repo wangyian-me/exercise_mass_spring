@@ -252,16 +252,15 @@ class Mass_spring:
             for j in ti.static(range(self.pos.n)):
                 if cond[j]:
                     self.vel[i][j] = 0
-            v_mid = self.vel[i] + self.F_f[i] / self.mass * self.dt * 0.5
-            self.pos[i] += self.vel[i] * self.dt
-            
+                    
             self.pos_mid[i] = self.pos[i] + self.vel[i] * self.dt * 0.5
-
+            v_mid = self.vel[i] + self.F_f[i] / self.mass * self.dt * 0.5
+            self.pos[i] += v_mid * self.dt
     
     @ti.kernel
     def step_midpoint_vel(self):
         for i in range(self.NV):
-            self.vel[i] += self.F_f_mid[i] * self.dt
+            self.vel[i] += self.F_f_mid[i] / self.mass * self.dt
             self.vel[i] *= ti.exp(-self.dt * self.damping)
 
     def step(self, s):
